@@ -34,27 +34,43 @@ const ResetPassword = () => {
     };
 
     return (
-        <div className='min-h-screen flex items-center justify-center bg-gray-200'>
-            <form onSubmit={handleSubmit} className='bg-white p-6 rounded shadow-md'>
-                <h2 className='text-xl mb-4'>Reset Password</h2>
-                <input
-                    type='password'
-                    value={newPassword}
-                    onChange={(e) => setNewPassword(e.target.value)}
-                    placeholder='New Password'
-                    required
-                    className='mb-4 p-2 border rounded w-full'
-                />
-                <input
-                    type='password'
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    placeholder='Confirm Password'
-                    required
-                    className='mb-4 p-2 border rounded w-full'
-                />
-                <button type='submit' className='bg-blue-500 text-white p-2 rounded'>Reset Password</button>
-            </form>
+        <div className='flex justify-center items-center min-h-screen bg-gradient-to-r from-[#5aaf93] to-[#2f5c6c]'>
+            <div className="flex flex-col justify-center bg-[#237e5a] max-h-screen max-w-full min-h-56 min-w-56 rounded-2xl text-white font-serif p-5">
+                <p className="text-center font-bold text-2xl">Forgot Password</p>
+                <form onSubmit={handleSubmit} className="p-2">
+                    <div className="mb-4">
+                        <label htmlFor="new" className="pr-2">
+                            New Password:
+                        </label>
+                        <input
+                            type="password"
+                            name="new"
+                            id="new"
+                            value={newPassword}
+                            onChange={(e) => setNewPassword(e.target.value)}
+                            className='border-2 border-[#45a258] border-opacity-65 rounded-lg text-gray-700 p-1'
+                            required
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label htmlFor="confirm" className="pr-2">
+                            New Password:
+                        </label>
+                        <input
+                            type="password"
+                            name="confirm"
+                            id="confirm"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            className='border-2 border-[#45a258] border-opacity-65 rounded-lg text-gray-700 p-1'
+                            required
+                        />
+                    </div>
+                    <button type='submit' className='bg-[#ffffff] text-[#237e5a] hover:bg-[#237e5a] hover:text-white rounded-lg w-fit p-1 text-sm transition-colors duration-1000 ml-28'>
+                        Send Reset Link
+                    </button>
+                </form>
+            </div>
         </div>
     );
 };
