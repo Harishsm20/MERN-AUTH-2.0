@@ -58,6 +58,14 @@ router.post('/forgot-password', async (req, res) => {
 
         const resetToken = jwt.sign({ email: user.email }, process.env.RESET_TOKEN_SECRET, { expiresIn: '5min' });
         const resetURL = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
+
+        await transporter.sendMail({
+            from: process.env.EMAIL_USER,
+            to: user.email,
+            subject: "Password Reset Request",
+            text: `You requested a password reset. Click the link to reset your password: ${resetURL}`,
+        });
+
         console.log("Password reset email sent");
         res.json({ message: "Password reset link sent to your email" });
     } catch (error) {
