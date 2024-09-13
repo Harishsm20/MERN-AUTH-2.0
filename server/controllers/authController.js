@@ -1,7 +1,28 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+const nodemailer = require('nodemailer');
 require('dotenv').config();
+
+
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD,
+    },
+});
+
+transporter.verify((error, success) => {
+    if (error) {
+        console.error('Email Transporter Error:', error);
+    } else {
+        console.log('Email Transporter is ready');
+    }
+});
+
 
 router.post('/signup', async (req, res) => {
     const { name, email, password } = req.body;
