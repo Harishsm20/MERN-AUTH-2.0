@@ -94,5 +94,17 @@ router.post('/forgot-password', async (req, res) => {
         res.status(500).json({ message: "Server error" });
     }
 });
+router.post('/reset-password', async (req, res) => {
+    const { email, newPassword } = req.body;
+    try {
+        const user = await User.findOne({ email: email });
+        user.password = newPassword;
+        res.json({ message: "Password has been reset successfully" });
+    } catch (error) {
+        console.error(error);
+        res.status(400).json({ message: "Invalid or expired token" });
+    }
+});
+
 
 module.exports = router;
