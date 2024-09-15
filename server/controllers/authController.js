@@ -95,10 +95,18 @@ router.post('/forgot-password', async (req, res) => {
     }
 });
 router.post('/reset-password', async (req, res) => {
-    const { email, newPassword } = req.body;
+    const { token, newPassword } = req.body;
+
     try {
-        const user = await User.findOne({ email: email });
+        const decoded = jwt.verify(token, process.env.RESET_TOKEN_SECRET);
+        const user = await User.findOne({ email: decoded.email });
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
         user.password = newPassword;
+        await user.save();
+        console.log("Password has been reset successfully");
         res.json({ message: "Password has been reset successfully" });
     } catch (error) {
         console.error(error);
