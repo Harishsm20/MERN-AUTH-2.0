@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 
-
+// Create Nodemailer transporter
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -22,7 +22,6 @@ transporter.verify((error, success) => {
         console.log('Email Transporter is ready');
     }
 });
-
 
 router.post('/signup', async (req, res) => {
     const { name, email, password } = req.body;
@@ -69,6 +68,8 @@ router.post('/login', async (req, res) => {
         res.status(500).json({ message: "Server error" });
     }
 });
+
+// Forget password route
 router.post('/forgot-password', async (req, res) => {
     const { email } = req.body;
     try {
@@ -94,6 +95,8 @@ router.post('/forgot-password', async (req, res) => {
         res.status(500).json({ message: "Server error" });
     }
 });
+
+// Reset Password Route
 router.post('/reset-password', async (req, res) => {
     const { token, newPassword } = req.body;
 
