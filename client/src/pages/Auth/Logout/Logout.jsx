@@ -5,13 +5,10 @@ import { useNavigate } from 'react-router-dom';
 const Logout = () => {
     const navigate = useNavigate();
     const [loggingOut, setLoggingOut] = useState(false);
-
     const handleLogout = () => {
         setLoggingOut(true);
-
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-
         navigate('/login');
     }
 
