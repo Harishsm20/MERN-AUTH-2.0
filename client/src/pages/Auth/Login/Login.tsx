@@ -3,10 +3,12 @@ import login1 from '../../../assets/Images/LoginImg/login1.png'
 import { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
     
     async function handleSubmit (event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
@@ -17,8 +19,15 @@ const Login = () => {
         catch(error){
             console.log(error)
         }
-        console.log(response)
         console.log(`Email : ${email}, Password: ${password}`)
+        if(response?.data.response === "Success"){
+            const token  =  response?.data.accessToken;
+            localStorage.setItem('token', token);
+            navigate('/home');
+        }
+        else{
+            alert("Login failed")
+        }
     }
     
   return (
