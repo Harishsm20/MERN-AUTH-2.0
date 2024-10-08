@@ -70,7 +70,6 @@ const Signup = () => {
               required
               name="name" 
               id="name"
-              placeholder='Name'
               value={name}
               onChange={(e) => setName(e.target.value)}
               className='ml-2 border-2 border-[#8fa245] border-opacity-65 rounded-lg mb-2 text-gray-700 placeholder:pl-1'
@@ -82,7 +81,6 @@ const Signup = () => {
               required
               name="email" 
               id="email"
-              placeholder='Email'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className='ml-2 border-2 border-[#8fa245] border-opacity-65 rounded-lg mb-2 text-gray-700 placeholder:pl-1'
@@ -94,7 +92,6 @@ const Signup = () => {
               required
               name="password" 
               id="password"
-              placeholder='Password'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className='ml-2 border-2 border-[#8fa245] border-opacity-65 rounded-lg placeholder:pl-1 mb-2 text-gray-700'
@@ -106,7 +103,6 @@ const Signup = () => {
               required
               name="confirm-password" 
               id="confirm-password"
-              placeholder='Confirm Password'
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               className='ml-2 border-2 border-[#8fa245] border-opacity-65 rounded-lg placeholder:pl-1 text-gray-700'
