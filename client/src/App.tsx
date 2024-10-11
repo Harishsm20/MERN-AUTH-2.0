@@ -5,6 +5,7 @@ import Signup from './pages/Auth/Signup/Signup';
 import ForgotPassword from './pages/Auth/PasswordManager/ForgotPassword';
 import ResetPassword from './pages/Auth/PasswordManager/ResetPassword';
 import Home from './pages/Home/Home';
+import ConfirmOtp from './pages/Auth/Confirm-OTP/ConfirmOtp';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Route path='/forgotPassword' element = {<ForgotPassword/>}></Route>
         <Route path='/reset-password/:token' element = {<ResetPassword/>}></Route>
         <Route path='/home' element = {<Home/>}></Route>
+        <Route path='/confirm-otp' element = {<ConfirmOtp/>}></Route>
 
       </Routes>
     </BrowserRouter>
