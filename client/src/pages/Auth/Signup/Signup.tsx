@@ -12,34 +12,29 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const navigate = useNavigate();
 
-
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>){
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     let response = null;
-    if(password === confirmPassword){
-      try{
-        response = await axios.post('http://localhost:3000/api/auth/signup',{name, email, password})
-        console.log(response)
-      }
-      catch(error){
+    
+    if (password === confirmPassword) {
+      try {
+        response = await axios.post('http://localhost:3000/api/auth/signup', { name, email, password });
+        console.log(response);
+      } catch (error) {
         alert(error);
-      }
-      finally{
-
-        if (response?.data.data === 'Success') {
-          // Navigate to the login page or home page
-          navigate('/login');
-        } else if (response?.data.data === 'Exists') {
-            alert('User already exists');
-            setTimeout(() => {
-              navigate('/login');
+      } finally {
+        if (response?.data.message === 'OTP sent to your email') {
+          navigate(`/confirm-otp`, { state: { name, email, password } });
+        } else if (response?.data.message === 'User already exists') {
+          alert('User already exists');
+          setTimeout(() => {
+            navigate('/login');
           }, 2000); 
         }
       }
-    }
-    else{
-      setConfirmPassword('')
-      alert('Confirm Password is incorrect')
+    } else {
+      setConfirmPassword('');
+      alert('Confirm Password is incorrect');
     }
   }
 

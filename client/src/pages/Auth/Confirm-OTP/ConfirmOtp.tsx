@@ -6,17 +6,17 @@ const ConfirmOtp = () => {
   const [otp, setOtp] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
-  const email = location.state.email;
+  const { name, email, password } = location.state;
 
   async function handleOtpSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    
+
     try {
-      const response = await axios.post('http://localhost:3000/api/auth/signup', { email, otp });
+      const response = await axios.post('http://localhost:3000/api/auth/signup', { name, email, password, otp });
       if (response.data.message === 'Signup successful') {
-        navigate('/login');  // Redirect to login on success
+        navigate('/login');
       } else {
-        alert(response.data.message);  // Handle invalid or expired OTP
+        alert(response.data.message);
       }
     } catch (error) {
       alert(error);
