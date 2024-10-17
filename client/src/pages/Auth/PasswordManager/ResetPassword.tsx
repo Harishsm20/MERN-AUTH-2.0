@@ -20,7 +20,7 @@ const ResetPassword = () => {
         try {
             const response = await axios.post('http://localhost:3000/api/auth/reset-password', {
                 token,
-                otp,  // Send OTP along with the request
+                otp,
                 newPassword,
             });
 
