@@ -24,7 +24,8 @@ const Signup = () => {
         alert(error);
       } finally {
         if (response?.data.message === 'OTP sent to your email') {
-          navigate(`/confirm-otp`, { state: { name, email, password } });
+          const page ='signup';
+          navigate(`/confirm-otp`, { state: { name, email, password, page} });
         } else if (response?.data.message === 'User already exists') {
           alert('User already exists');
           setTimeout(() => {
@@ -37,6 +38,7 @@ const Signup = () => {
       alert('Confirm Password is incorrect');
     }
   }
+  
 
   return (
     <div className="flex justify-center min-h-screen items-center p-4 bg-gradient-to-r from-[#2f5c6c] to-[#5aaf93]">

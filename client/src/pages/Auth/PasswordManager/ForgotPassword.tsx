@@ -1,8 +1,10 @@
 import React, { useState, FormEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const ForgotPassword: React.FC = () => {
     const [email, setEmail] = useState<string>('');
+    const navigate = useNavigate();
 
     interface ForgotPasswordResponse {
         message: string;
@@ -14,6 +16,10 @@ const ForgotPassword: React.FC = () => {
         try {
             const response = await axios.post<ForgotPasswordResponse>('http://localhost:3000/api/auth/forgot-password', { email });
             alert(response.data.message);
+            if(response.data.message === 'OTP sent to your email'){
+                const page = 'forgot-password'
+                navigate('/confirm-otp', { state: { email, page } });
+            }
         } catch (error) {
             console.error(error);
             alert('Error sending password reset email');
