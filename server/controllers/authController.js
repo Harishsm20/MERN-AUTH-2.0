@@ -84,6 +84,29 @@ router.post('/signup', async (req, res) => {
 });
 
 
+router.post('/save-user', async (req, res) => {
+    try {
+        const { email, name, age } = req.body;
+
+        // Create a new user instance
+        const newUser = new User({
+            email: email,
+            name: name,
+            age: age
+        });
+
+        // Save the user to the database
+        await newUser.save();
+
+        // Send response
+        res.status(201).json({ message: 'User created successfully', user: newUser });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
 

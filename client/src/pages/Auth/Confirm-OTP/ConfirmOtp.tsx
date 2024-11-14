@@ -13,27 +13,32 @@ const ConfirmOtp: React.FC = () => {
   const navigate = useNavigate();
 
   const location = useLocation();
-  const { email, token, page } = location.state as LocationState;
+  const { name, email, password, page, token } = location.state as LocationState;
 
   const handleOtpSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3000/api/auth/confirm-otp', { email, otp });
-      if (response.data.message === 'OTP verified' && page === 'forgot-password') {
-        // Navigate to reset password page with email and token
-        navigate('/reset-password', { state: { email, token } });
-      }
-      else if(response.data.message === 'OTP verified' && page === 'signup'){
-        navigate('/login');
-      }
-       else {
-        alert(response.data.message);
-      }
+        const response = await axios.post('http://localhost:3000/api/auth/confirm-otp', { email, otp });
+        if (response.data.message === 'OTP verified' && page === 'forgot-password') {
+            // Navigate to reset password page with email and token
+            navigate('/reset-password', { state: { email, token } });
+        }
+        else if(response.data.message === 'OTP verified' && page === 'signup'){
+            // Redirect to login page after successful signup verification
+            const res = await axios.post('http://localhost:3000/api/auth/signup', { email, otp });
+            navigate('/login');
+        }
+         else {
+            alert(response.data.message);
+        }
     } catch (error) {
-      alert(error);
+        console.error("Error occurred:", error.response || error);
+        alert(error.response?.data?.message || "Error occurred");
     }
-  };
+};
+
+
 
   return (
     <div>
