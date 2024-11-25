@@ -24,11 +24,19 @@ const ConfirmOtp: React.FC = () => {
             // Navigate to reset password page with email and token
             navigate('/reset-password', { state: { email, token } });
         }
-        else if(response.data.message === 'OTP verified' && page === 'signup'){
-            // Redirect to login page after successful signup verification
-            const res = await axios.post('http://localhost:3000/api/auth/signup', { email, otp });
-            navigate('/login');
-        }
+        else if (response.data.message === 'OTP verified' && page === 'signup') {
+          // Redirect to signup after OTP verification
+          const res = await axios.post('http://localhost:3000/api/auth/signup', { 
+              name, email, password, otp 
+          });
+      
+          if (res.data.message === 'Signup successful') {
+              navigate('/login');
+          } else {
+              alert(res.data.message);
+          }
+      }
+      
          else {
             alert(response.data.message);
         }
