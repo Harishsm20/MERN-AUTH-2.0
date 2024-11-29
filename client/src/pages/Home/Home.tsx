@@ -5,20 +5,26 @@ const Home = () => {
     <>
       <div className='flex flex-col min-h-screen bg-gradient-to-r from-[#5aaf93] to-[#2f5c6c]'>
         <div className='flex-1 p-6'>
-          <h1 className='text-4xl font-bold text-white mb-4'>Welcome to the JWT Authentication Course</h1>
+          <h1 className='text-4xl font-bold text-white mb-4'>Welcome to the MERN Stack Authentication Platform</h1>
+          
+          {/* Updated Description */}
           <p className='text-lg text-white mb-6'>
-            JSON Web Tokens (JWT) are an open standard (RFC 7519) that defines a compact and self-contained way
-            for securely transmitting information between parties as a JSON object. This information can be
-            verified and trusted because it is digitally signed.
+            This website is built on the powerful <span className="bg-yellow-200 text-gray-800 font-bold px-2 py-1 rounded">MERN Stack</span>, providing secure and seamless authentication
+            for modern web applications using <span className="bg-blue-200 text-gray-800 font-bold px-2 py-1 rounded">JSON Web Tokens (JWT)</span>.
+            With JWT, your data is digitally signed and securely transmitted, ensuring trust and confidentiality.
           </p>
+
           <p className='text-lg text-white mb-6'>
-            In this course, we will dive into the world of JWTs, learning how they are used for authentication
-            and authorization in modern web applications. You’ll learn how to create, sign, and validate tokens,
-            and understand their role in securing APIs.
+            Our platform supports common authentication features like <span className="bg-blue-200 text-gray-800 font-bold px-2 py-1 rounded">Login</span>, <span className="bg-blue-200 text-gray-800 font-bold px-2 py-1 rounded">Signup</span>, 
+            and secure user authentication with <span className="bg-blue-200 text-gray-800 font-bold px-2 py-1 rounded">JWT tokens</span>. You’ll also be able to reset your password with our 
+            <span className="bg-green-200 text-gray-800 font-bold px-2 py-1 rounded">Forget Password</span> and <span className="bg-green-200 text-gray-800 font-bold px-2 py-1 rounded">Reset Password</span> functionality, enabling a smooth 
+            user experience.
           </p>
+
           <p className='text-lg text-white mb-6'>
-            By the end of this course, you’ll be equipped to implement secure JWT authentication in your
-            applications, enabling users to authenticate seamlessly while ensuring their data is protected.
+            We’re continuously working to enhance the security and user experience of this platform. Some advanced features,
+            such as <span className="bg-red-200 text-gray-800 font-bold px-2 py-1 rounded">multi-factor authentication</span>, are still <span className="bg-yellow-400 text-gray-800 font-bold px-2 py-1 rounded">under development</span>
+            and will be available soon! Stay tuned for updates as we continue to improve and expand the platform's capabilities.
           </p>
         </div>
         

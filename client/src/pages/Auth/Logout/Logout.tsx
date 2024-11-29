@@ -22,7 +22,7 @@ const Logout = () => {
           <h1 className="text-3xl font-bold">Logging out...</h1>
         ) : (
           <button 
-            className="bg-[#ffffff] text-[#237e5a] hover:bg-[#237e5a] hover:text-white rounded-lg w-fit p-1 text-sm transition-colors duration-1000" 
+            className="bg-[#ffffff] text-[#237e5a] hover:bg-[#237e5a] hover:text-white rounded-lg  p-1 text-sm transition-colors duration-1000 w-full max-w-xs py-3 px-6" 
             onClick={handleLogout}
           >
             Logout
