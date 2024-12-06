@@ -6,14 +6,35 @@ const Home = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = localStorage.getItem('authToken');
+    useEffect(() => {
+    const token = localStorage.getItem('token');
     if (token) {
-      setIsLoggedIn(true);
+      axios.post('http://localhost:3000/api/auth/verify-token', { token })
+        .then(response => {
+          if (response.data.valid) {
+            setIsLoggedIn(true);
+          } else {
+            setIsLoggedIn(false);
+            navigate('/login');
+          }
+        })
+        .catch(err => {
+          console.log(err);
+          navigate('/login');
+        });
     } else {
       navigate('/login');
     }
   }, [navigate]);
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem('authToken');
+  //   if (token) {
+  //     setIsLoggedIn(true);
+  //   } else {
+  //     navigate('/login');
+  //   }
+  // }, [navigate]);
 
   if (!isLoggedIn) {
     return null;
